@@ -35,25 +35,21 @@ class MyNames:
         try:
             index = self.list.index(name_string)
             return index
-        except  ValueError:
-             self.list.append(name_string)
-             return len(self.list) - 1
-
+        except ValueError:
+            self.list.append(name_string)
+            return len(self.list) - 1
 
     def get_string(self, name_id):
         """Return the corresponding name string for the given name_id.
 
         If the name ID is not a valid index into the names list, return None.
         """
-        if type(name_id) is not int:
-            return None
-            raise TypeError
+        if not isinstance(name_id, int):
+            raise TypeError('Please provide a integer argument.')
         elif name_id < 0:
-            return None
-            raise ValueError
+            raise ValueError('Please provide a positive index.')
         elif name_id >= len(self.list):
             return None
-            raise ValueError
         else:
             name = self.list[name_id]
             return name
