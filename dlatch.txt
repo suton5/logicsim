@@ -1,0 +1,21 @@
+START DEVICES
+SW_1 = SWITCH, init=0;
+CLK_1 = CLOCK, simcycle=20;
+G_1 = NAND, ip=2;
+G_2 = NAND, ip=2;
+G_3 = NAND, ip=2;
+G_4 = NAND, ip=2;
+END DEVICES
+
+START CONNECTIONS
+SW_1 -> G_1.I1;
+CLK_1 -> G_1.I2, G_2.I2;
+G_1 -> G_2.I1, G_3.I1;
+G_2 -> G_4.I2;
+G_3 -> G_4.I1;
+G_4 -> G_3.I2;
+END CONNECTIONS
+
+START MONITOR
+G_3, G_4;
+END MONITOR
