@@ -1,0 +1,14 @@
+grammar = "START DEVICES", devicelist, "END DEVICES", "START CONNECTIONS", connectionlist, "END CONNECTIONS", "START MONITOR", monitorlist, "END MONITOR";
+
+devicelist = device, {device};
+device = object, "=", object, "_", number, ",", number, "input", ",", number, "output", [",", "initial=", number], ";";
+object = "CLOCK"|"SWITCH"|"AND"|"NAND"|"OR"|"NOR"|"DTYPE"|"XOR";
+
+connectionlist = connection, {",", connection};
+connection = output, “->”, input, “;”;
+output = object, "_", number, ".", outputnumber;
+outputnumber = "O", number;
+input = object, "_", number, ".", inputnumber;
+inputnumber = "I", number;
+ 
+monitorlist = output, [",", output], ";";
