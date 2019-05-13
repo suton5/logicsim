@@ -1,17 +1,17 @@
 START DEVICES
-SWITCH = SWITCH_1, 0 input, 1 output, initial=0;
-SWITCH = SWITCH_2, 0 input, 1 output, initial=0;
-NAND = NAND_1, 2 input, 1 output;
-NAND = NAND_2, 2 input, 1 output;
+SW_1 = SWITCH, ip0, op1, init=0;
+SW_2 = SWITCH_2, ip0, op1, init=0;
+G_1 = NAND, ip2, op1;
+G_2 = NAND, ip2, op1;
 END DEVICES
 
 START CONNECTIONS
-SWTICH_1.O1 -> NAND_1.I1;
-NAND_1.O1 -> NAND_2.I1;
-NAND_2.O1 -> NAND_1.I2;
-SWITCH_2.O1 -> NAND_2.I2;
+SW_1 -> G_1.I1;
+G_1 -> G_2.I1;
+G_2 -> G_1.I2;
+SW_2 -> G_2.I2;
 END CONNECTIONS
 
 START MONITOR
-NAND_1.O1, NAND_2.O1;
+G_1, G_2;
 END MONITOR
