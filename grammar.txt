@@ -1,4 +1,4 @@
-grammar = "START DEVICES", devicelist, "END DEVICES", "START CONNECTIONS", connectionlist, "END CONNECTIONS", "START MONITOR", monitorlist, "END MONITOR";
+﻿grammar = "START DEVICES", devicelist, "END DEVICES", "START CONNECTIONS", connectionlist, "END CONNECTIONS", "START MONITOR", monitorlist, "END MONITOR";
 
 devicelist = device, {device};
 device = name, "=", object, [",", "ip=", number], [",", "init=", number], [",", "cycles=", number], ";";
