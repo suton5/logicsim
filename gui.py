@@ -274,9 +274,15 @@ class Gui(wx.Frame):
         self.canvas = MyGLCanvas(self, devices, monitors)
 
         # Configure the widgets
-        self.text = wx.StaticText(self, wx.ID_ANY, "Cycles")
-        self.spin = wx.SpinCtrl(self, wx.ID_ANY, "10")
-        self.run_button = wx.Button(self, wx.ID_ANY, "Run")
+        text_run = self.text = wx.StaticText(self, wx.ID_ANY, "Cycles to run")
+        text_cont = self.text = wx.StaticText(self, wx.ID_ANY, "Cycles to continue")
+        #spin_run = self.spin = wx.SpinCtrl(self, wx.ID_ANY, "10")
+        spin_run = wx.SpinCtrl(self, wx.ID_ANY, "10")
+        spin_cont = self.spin = wx.SpinCtrl(self, wx.ID_ANY, "1")
+        # Added a cont button
+        run = self.run_button = wx.Button(self, wx.ID_ANY, "Run")
+        cont = self.run_button = wx.Button(self, wx.ID_ANY, "Continue")
+
         self.text_box = wx.TextCtrl(self, wx.ID_ANY, "",
                                     style=wx.TE_PROCESS_ENTER)
         #add a reset button
@@ -286,10 +292,14 @@ class Gui(wx.Frame):
         # Bind events to widgets
         self.Bind(wx.EVT_MENU, self.on_menu)
         self.spin.Bind(wx.EVT_SPINCTRL, self.on_spin)
-        self.run_button.Bind(wx.EVT_BUTTON, self.on_run_button)
+        #self.run_button.Bind(wx.EVT_BUTTON, self.on_run_button)
+        run.Bind(wx.EVT_BUTTON, self.on_run_button)
+        # Added a continue button
+        cont.Bind(wx.EVT_BUTTON, self.on_continue_button)
         self.text_box.Bind(wx.EVT_TEXT_ENTER, self.on_text_box)
         self.ResetButton.Bind(wx.EVT_BUTTON, self.on_reset_button)
-
+        
+       
         # Configure sizers for layout
         main_sizer = wx.BoxSizer(wx.HORIZONTAL)
         side_sizer = wx.BoxSizer(wx.VERTICAL)
@@ -297,11 +307,16 @@ class Gui(wx.Frame):
         main_sizer.Add(self.canvas, 5, wx.EXPAND | wx.ALL, 5)
         main_sizer.Add(side_sizer, 1, wx.ALL, 5)
 
-        side_sizer.Add(self.text, 1, wx.TOP, 10)
-        side_sizer.Add(self.spin, 1, wx.ALL, 5)
-        side_sizer.Add(self.run_button, 1, wx.ALL, 5)
+        side_sizer.Add(text_run, 1, wx.TOP, 10)
+        side_sizer.Add(spin_run, 1, wx.ALL, 5)
+        #side_sizer.Add(self.run_button, 1, wx.ALL, 5)
+        side_sizer.Add(run, 1, wx.ALL, 5)
+        side_sizer.Add(text_cont, 1, wx.TOP, 10)
+        side_sizer.Add(spin_cont, 1, wx.ALL, 5)
+        side_sizer.Add(cont, 1, wx.ALL, 5)
         side_sizer.Add(self.ResetButton, 1, wx.ALL, 5)
         side_sizer.Add(self.text_box, 1, wx.ALL, 5)
+        
 
 
         self.SetSizeHints(600, 600)
@@ -312,17 +327,10 @@ class Gui(wx.Frame):
         # that the programmer expects, but can be very frustrating to the user if it is
         # used to excess
         self.exitconfirmation = wx.MessageDialog(self, "Exit - Are you Sure? \n", "Confirmation", wx.YES_NO)
+    
+        self.monitors = monitors
 
-    def command_interface(self):
-        """Read the command entered and call the corresponding function."""
-        print("Logic Simulator: interactive command line user interface.\n"
-              "Enter 'h' for help.")
-        command = self.  # read the first character
-        while command != "q":
-            if command == "h":
-                self.help_command()
-        
-                
+
     def on_menu(self, event):
         """Handle the event when the user selects a menu item."""
         Id = event.GetId()
@@ -340,12 +348,19 @@ class Gui(wx.Frame):
         text = "".join(["New spin control value: ", str(spin_value)])
         self.canvas.render(text)
         return spin_value
-        
+    
     def on_run_button(self, event):
         """Handle the event when the user clicks the run button."""
-        text = "Run button pressed."
-        self.canvas.render(text)
-        
+        #text = "Run button pressed."
+        #self.canvas.render(text)
+        self.run_command()
+    
+    def on_continue_button(self, event):
+        """Handle the event when the user clicks the run button."""
+        #text = "Run button pressed."
+        #self.canvas.render(text)
+        self.continue_command()
+    
     def on_reset_button(self, event):
         """Handle the event when the user clicks the run button."""
         text = "Reset button pressed."
@@ -360,13 +375,32 @@ class Gui(wx.Frame):
     def run_command(self):
         """Run the simulation from scratch."""
         self.cycles_completed = 0
-        cycles = self.on_spin(event)
-
+        
+        cycles = self.on_spin(wx.SpinCtrl)
+        
+        #check that this function has been called on pressing run button
+        text = "".join(["run_command function has been called, number of cycles is: ", str(cycles)])
+        self.canvas.render(text)
+        
         if cycles is not None:  # if the number of cycles provided is valid
             self.monitors.reset_monitors()
             print("".join(["Running for ", str(cycles), " cycles"]))
             self.devices.cold_startup()
             if self.run_network(cycles):
                 self.cycles_completed += cycles
- 
+
+    def continue_command(self):
+        """Continue a previously run simulation."""
+        cycles = self.on_spin(wx.SpinCtrl)
+        if cycles is not None:  # if the number of cycles provided is valid
+            if self.cycles_completed == 0:
+                print("Error! Nothing to continue. Run first.")
+            elif self.run_network(cycles):
+                self.cycles_completed += cycles
+                print(" ".join(["Continuing for", str(cycles), "cycles.",
+                                "Total:", str(self.cycles_completed)]))
+
+
+
+
 
