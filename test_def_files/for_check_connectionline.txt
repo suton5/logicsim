@@ -1,0 +1,11 @@
+SWITCH -> G1.I1;
+D2,QBAR -> G1.I1;
+D2.QBA -> G1.I1;
+SW1 -> NAND.I1;
+SW1 -> G1,I1;
+SW1 -> G1.j1;
+SW1 -> G1.Ia;
+D2.Q => G1.I1;
+CLK1 -> D1.CLK, D2.CLK D3.CLK;
+CLK1 -> D1.CLK, D2.CLK, D3.CLK;
+G1-> G2.I1;

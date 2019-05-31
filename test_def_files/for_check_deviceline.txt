@@ -1,0 +1,8 @@
+SWITCH = SWITCH, init=0;
+SW1 l= SWITCH, init=0;
+SW2 = OPAMP, init=0;
+SW1 = SWITCH init=0;
+SW1 = SWITCH, init=0;
+SW1 = SWITCH, iniet=0;
+SW1 = SWITCH, init - 0;
+SW1 = XOR, ip=a;

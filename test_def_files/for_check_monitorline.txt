@@ -1,0 +1,5 @@
+NAND;
+G2
+D2.QBA;
+D2.QBAR
+D2.QBAR;

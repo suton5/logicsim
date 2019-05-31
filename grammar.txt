@@ -1,4 +1,4 @@
-﻿grammar = "START DEVICES", devicelist, "END DEVICES", "START CONNECTIONS", connectionlist, "END CONNECTIONS", "START MONITOR", monitorlist, "END MONITOR";
+﻿network = "START DEVICES", ";", devicelist, "END DEVICES", ";", "START CONNECTIONS", ";", connectionlist, "END CONNECTIONS", ";", "START MONITORS", ";", monitorlist, "END MONITORS", ";";
 
 devicelist = device, {device};
 device = name, "=", object, [",", "ip=", number], [",", "init=", number], [",", "cycles=", number], ";";
@@ -16,5 +16,5 @@ outputname = "Q"|"QBAR";
 input = name, ".", inputname;
 inputname = inputsig|"DATA"|"CLK"|"SET"|"CLEAR";
 inputsig = "I", number;
- 
-monitorlist = output, [",", output], ";";
+
+monitorlist = output, {";", output}, ";";

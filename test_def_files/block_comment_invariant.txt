@@ -1,0 +1,26 @@
+START END DEVICES CONNECTIONS MONITORS /*
+ip init cycles CLOCK SWITCH AND NAND OR NOR
+DTYPE XOR Q QBAR DATA CLK SET CLEAR
+5 6 7 8 9 10 100
+Lorem ipsum dolor sit amet consectetur
+adipiscing elit sed do eiusmod tempor
+START END DEVICES CONNECTIONS MONITORS
+Lorem ipsum dolor sit amet consectetur
+adipiscing elit sed do eiusmod tempor */ip init cycles CLOCK SWITCH AND NAND OR NOR
+DTYPE XOR Q QBAR DATA CLK SET CLEAR
+5 6 7 8 9 10 100 /* dsfsfsd */
+Lorem ipsum dolor sit amet consectetur
+adipiscing elit sed do eiusmod tempor
+START END DEVICES/*sdfsdf */CONNECTIONS MONITORS
+Lorem ipsum dolor sit amet consectetur
+/*asdasdasd
+
+
+
+
+
+
+
+*/
+adipiscing elit sed do eiusmod tempor
+/*     */
