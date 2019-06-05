@@ -1,0 +1,262 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-06-03 10:20+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: gui.py:193 gui.py:497
+msgid "Canvas redrawn on paint event, size is "
+msgstr ""
+
+#: gui.py:216
+msgid "Mouse button pressed at: "
+msgstr ""
+
+#: gui.py:219
+msgid "Mouse button released at: "
+msgstr ""
+
+#: gui.py:222
+msgid "Mouse left canvas at: "
+msgstr ""
+
+#: gui.py:230
+msgid "Mouse dragged to: "
+msgstr ""
+
+#: gui.py:231
+msgid ". Pan is now: "
+msgstr ""
+
+#: gui.py:237
+msgid "Negative mouse wheel rotation. Zoom is now: "
+msgstr ""
+
+#: gui.py:243
+msgid "Positive mouse wheel rotation. Zoom is now: "
+msgstr ""
+
+#: gui.py:645
+msgid "Successfully zapped monitor"
+msgstr ""
+
+#: gui.py:647
+msgid "Error! Could not zap monitor"
+msgstr ""
+
+#: gui.py:662
+msgid "Successfully made monitor "
+msgstr ""
+
+#: gui.py:665
+msgid "Error! Could not make monitor"
+msgstr ""
+
+#: gui.py:762
+msgid " is on"
+msgstr ""
+
+#: gui.py:764
+msgid " is off"
+msgstr ""
+
+#: gui.py:780
+msgid "Parsing Definition Files"
+msgstr ""
+
+#: gui.py:783
+msgid "Close"
+msgstr ""
+
+#: gui.py:839
+msgid "&About"
+msgstr ""
+
+#: gui.py:840 gui.py:969
+msgid "&Open"
+msgstr ""
+
+#: gui.py:842
+msgid "&Quit"
+msgstr ""
+
+#: gui.py:847
+msgid "&File"
+msgstr ""
+
+#: gui.py:858 gui.py:964
+msgid "Console"
+msgstr ""
+
+#: gui.py:862 gui.py:963
+msgid "Render"
+msgstr ""
+
+#: gui.py:865
+msgid "English"
+msgstr ""
+
+#: gui.py:865
+msgid "Chinese"
+msgstr ""
+
+#: gui.py:866 gui.py:962
+msgid "Language"
+msgstr ""
+
+#: gui.py:870 gui.py:954
+msgid "Cycles to run"
+msgstr ""
+
+#: gui.py:871 gui.py:955
+msgid "Cycles to continue"
+msgstr ""
+
+#: gui.py:874 gui.py:956
+msgid "Run"
+msgstr ""
+
+#: gui.py:875 gui.py:957
+msgid "Continue"
+msgstr ""
+
+#: gui.py:876 gui.py:958
+msgid "Clear"
+msgstr ""
+
+#: gui.py:877 gui.py:959
+msgid "Set Switches"
+msgstr ""
+
+#: gui.py:878 gui.py:960
+msgid "Monitor"
+msgstr ""
+
+#: gui.py:879 gui.py:961
+msgid "Default Position"
+msgstr ""
+
+#: gui.py:927
+msgid "Are you sure you want to quit the simulation? \n"
+msgstr ""
+
+#: gui.py:928
+msgid "Confirmation"
+msgstr ""
+
+#: gui.py:932
+msgid "Select Logic Definition File"
+msgstr ""
+
+#: gui.py:935
+msgid "Logic definition files (*.txt)|*.txt"
+msgstr ""
+
+#: gui.py:945
+msgid "English is selected"
+msgstr ""
+
+#: gui.py:951
+msgid "Chinese is selected"
+msgstr ""
+
+#: gui.py:965
+msgid "About"
+msgstr ""
+
+#: gui.py:966
+msgid "Quit"
+msgstr ""
+
+#: gui.py:967 gui.py:1049 logsim.py:84 logsim.py:105 logsim.py:107
+msgid "Logic Simulator"
+msgstr ""
+
+#: gui.py:968
+msgid "File"
+msgstr ""
+
+#: gui.py:974
+msgid " was selected"
+msgstr ""
+
+#: gui.py:992 gui.py:1111 gui.py:1120
+msgid "Select signals to monitor"
+msgstr ""
+
+#: gui.py:996
+msgid "Set switches to 1"
+msgstr ""
+
+#: gui.py:1066
+msgid "New run spin control value: "
+msgstr ""
+
+#: gui.py:1077
+msgid "New continue spin control value: "
+msgstr ""
+
+#: gui.py:1086
+msgid "Run button pressed."
+msgstr ""
+
+#: gui.py:1095
+msgid "Continue button pressed."
+msgstr ""
+
+#: gui.py:1104
+msgid "Reset button pressed."
+msgstr ""
+
+#: gui.py:1137
+msgid "New text box value: "
+msgstr ""
+
+#: gui.py:1153
+msgid "run_command function has been called, number of cycles is: "
+msgstr ""
+
+#: gui.py:1161
+msgid "Running for "
+msgstr ""
+
+#: gui.py:1161
+msgid " cycles"
+msgstr ""
+
+#: gui.py:1172
+msgid "continue_command function has been called, number of cycles is: "
+msgstr ""
+
+#: gui.py:1179
+msgid "Error! Nothing to continue. Run first."
+msgstr ""
+
+#: gui.py:1182
+msgid "Continuing for"
+msgstr ""
+
+#: gui.py:1182
+msgid "cycles."
+msgstr ""
+
+#: gui.py:1182
+msgid "Total:"
+msgstr ""
+
+#: gui.py:1194
+msgid "Error! Network oscillating."
+msgstr ""

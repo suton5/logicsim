@@ -1,0 +1,287 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-06-03 15:11+0100\n"
+"PO-Revision-Date: 2019-06-03 15:12+0100\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: zh\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.2.3\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: gui.py:193 gui.py:497
+msgid "Canvas redrawn on paint event, size is "
+msgstr "画布重绘, 大小是"
+
+#: gui.py:216
+msgid "Mouse button pressed at: "
+msgstr "鼠标按钮按下于:"
+
+#: gui.py:219
+msgid "Mouse button released at: "
+msgstr "鼠标按钮释放于:"
+
+#: gui.py:222
+msgid "Mouse left canvas at: "
+msgstr "鼠标离开画布于:"
+
+#: gui.py:230
+msgid "Mouse dragged to: "
+msgstr "鼠标拖动到:"
+
+#: gui.py:231
+msgid ". Pan is now: "
+msgstr ".Pan现在是:"
+
+#: gui.py:237
+msgid "Negative mouse wheel rotation. Zoom is now: "
+msgstr "负鼠标滚轮旋转。现在缩放是:"
+
+#: gui.py:243
+msgid "Positive mouse wheel rotation. Zoom is now: "
+msgstr "正鼠标滚轮旋转。现在缩放是:"
+
+#: gui.py:645
+msgid "Successfully zapped monitor"
+msgstr "成功破坏了显示器"
+
+#: gui.py:647
+msgid "Error! Could not zap monitor"
+msgstr "错误！无法消除显示器"
+
+#: gui.py:662
+msgid "Successfully made monitor "
+msgstr "成功制作了显示器"
+
+#: gui.py:665
+msgid "Error! Could not make monitor"
+msgstr "错误！无法制作显示器"
+
+#: gui.py:762
+msgid " is on"
+msgstr "开启"
+
+#: gui.py:764
+msgid " is off"
+msgstr "关闭"
+
+#: gui.py:780
+msgid "Parsing Definition Files"
+msgstr "解析定义文件"
+
+#: gui.py:784
+msgid "Close"
+msgstr "关闭"
+
+#: gui.py:840
+msgid "&About"
+msgstr "关于"
+
+#: gui.py:841 gui.py:970
+msgid "&Open"
+msgstr "打开"
+
+#: gui.py:843
+msgid "&Quit"
+msgstr "退出"
+
+#: gui.py:848
+msgid "&File"
+msgstr "文件"
+
+#: gui.py:859 gui.py:965
+msgid "Console"
+msgstr "告示板"
+
+#: gui.py:863 gui.py:964
+msgid "Render"
+msgstr "呈送"
+
+#: gui.py:867 gui.py:963
+msgid "Language"
+msgstr "语言"
+
+#: gui.py:871 gui.py:955
+msgid "Cycles to run"
+msgstr "运行次数"
+
+#: gui.py:872 gui.py:956
+msgid "Cycles to continue"
+msgstr "继续次数"
+
+#: gui.py:875 gui.py:957
+msgid "Run"
+msgstr "运行"
+
+#: gui.py:876 gui.py:958
+msgid "Continue"
+msgstr "继续"
+
+#: gui.py:877 gui.py:959
+msgid "Clear"
+msgstr "清除"
+
+#: gui.py:878 gui.py:960
+msgid "Set Switches"
+msgstr "设定开关"
+
+#: gui.py:879 gui.py:961
+msgid "Monitor"
+msgstr "监测"
+
+#: gui.py:880 gui.py:962
+msgid "Default Position"
+msgstr "原先位置"
+
+#: gui.py:928
+msgid "Are you sure you want to quit the simulation? \n"
+msgstr "你确定要退出模拟吗？\n"
+
+#: gui.py:929
+msgid "Confirmation"
+msgstr "确认"
+
+#: gui.py:933
+msgid "Select Logic Definition File"
+msgstr "选择逻辑定义文件"
+
+#: gui.py:936
+msgid "Logic definition files (*.txt)|*.txt"
+msgstr "逻辑定义文件（* .txt）| * .txt"
+
+#: gui.py:946
+msgid "English is selected"
+msgstr "选择英语"
+
+#: gui.py:952
+msgid "Chinese is selected"
+msgstr "选择中文"
+
+#: gui.py:966
+msgid "About"
+msgstr "关于"
+
+#: gui.py:967
+msgid "Quit"
+msgstr "退出"
+
+#: gui.py:968 gui.py:1050
+msgid "Logic Simulator"
+msgstr "逻辑模拟器"
+
+#: gui.py:969
+msgid "File"
+msgstr "文件"
+
+#: gui.py:975
+msgid " was selected"
+msgstr " 被选择"
+
+#: gui.py:993 gui.py:1112 gui.py:1121
+msgid "Select signals to monitor"
+msgstr "选择要监控的信号"
+
+#: gui.py:997
+msgid "Set switches to 1"
+msgstr "设定开关为1"
+
+#: gui.py:1011
+msgid ""
+"Display the signal traces at different monitored outputs.  \n"
+"Red trace represents '1', blue trace represents '0'.\n"
+"Outputs to be monitored can be selected by clicking 'Monitor'.\n"
+"Switches levels can be selected by clicking 'Set Switches'"
+msgstr ""
+"显示不同监控输出的信号走线。\n"
+"红色迹线表示“1”，蓝色迹线表示“0”。\n"
+"单击“监视”可以选择要监视的输出。\n"
+"单击“设置开关”可以选择开关电平。"
+
+#: gui.py:1012
+msgid "About Logsim"
+msgstr "关于逻辑模拟器"
+
+#: gui.py:1067
+msgid "New run spin control value: "
+msgstr "新运行旋转控制值："
+
+#: gui.py:1078
+msgid "New continue spin control value: "
+msgstr "新继续旋转控制值"
+
+#: gui.py:1087
+msgid "Run button pressed."
+msgstr "按下运行按钮。"
+
+#: gui.py:1096
+msgid "Continue button pressed."
+msgstr "按下继续按钮。"
+
+#: gui.py:1105
+msgid "Reset button pressed."
+msgstr "按下重置按钮。"
+
+#: gui.py:1138
+msgid "New text box value: "
+msgstr ""
+"新文本框\n"
+"值"
+
+#: gui.py:1154
+msgid "run_command function has been called, number of cycles is: "
+msgstr "已调用run_command函数，循环次数为："
+
+#: gui.py:1162
+msgid "Running for "
+msgstr "运行"
+
+#: gui.py:1162
+msgid " cycles"
+msgstr "次数"
+
+#: gui.py:1173
+msgid "continue_command function has been called, number of cycles is: "
+msgstr "已调用continue_command函数，循环次数为："
+
+#: gui.py:1180
+msgid "Error! Nothing to continue. Run first."
+msgstr "错误！无法继续。先运行。"
+
+#: gui.py:1183
+msgid "Continuing for"
+msgstr "继续"
+
+#: gui.py:1183
+msgid "cycles."
+msgstr "次数。"
+
+#: gui.py:1183
+msgid "Total:"
+msgstr "总和："
+
+#: gui.py:1195
+msgid "Error! Network oscillating."
+msgstr "错误！网络振荡。"
+
+#~ msgid "English"
+#~ msgstr "英语"
+
+#~ msgid "Chinese"
+#~ msgstr "中文"
+
+#, fuzzy
+#~| msgid "&Open"
+#~ msgid "Open"
+#~ msgstr "打开"
+
+#~ msgid "The signal trace is printed"
+#~ msgstr "打印信号迹线"

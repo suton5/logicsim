@@ -32,7 +32,7 @@ def test_semicolon_skipper(basic_parser):
     my_parser = basic_parser
     my_scanner = my_parser.scanner
     my_parser.symbol = my_scanner.get_symbol()
-    my_parser.semicolon_skipper()
+    my_parser._semicolon_skipper()
     assert my_parser.symbol.type == my_scanner.SEMICOLON
 
 
@@ -45,7 +45,7 @@ def test_check_semicolon_else_skip1(basic_parser):
     my_parser.symbol = my_scanner.get_symbol()
     my_parser.symbol = my_scanner.get_symbol()
     my_parser.symbol = my_scanner.get_symbol()
-    my_parser.check_semicolon_else_skip(my_parser.symbol)
+    my_parser._check_semicolon_else_skip(my_parser.symbol)
     assert len(my_parser.syntax_errors_list) == 0
 
 
@@ -55,7 +55,7 @@ def test_check_semicolon_else_skip2(basic_parser):
     my_parser = basic_parser
     my_scanner = my_parser.scanner
     my_parser.symbol = my_scanner.get_symbol()
-    my_parser.check_semicolon_else_skip(my_parser.symbol)
+    my_parser._check_semicolon_else_skip(my_parser.symbol)
     assert len(my_parser.syntax_errors_list) == 1
     assert my_parser.syntax_errors_list[0] == "semicolon"
 
@@ -63,8 +63,7 @@ def test_check_semicolon_else_skip2(basic_parser):
 def test_check_fixed_start1(basic_parser):
     """Tests that check_fixed_start gives no error if START is provided."""
     my_parser = basic_parser
-    my_scanner = my_parser.scanner
-    my_parser.check_fixed_start()
+    my_parser._check_fixed_start()
     assert len(my_parser.syntax_errors_list) == 0
 
 
@@ -74,7 +73,7 @@ def test_check_fixed_start2(basic_parser):
     my_parser = basic_parser
     my_scanner = my_parser.scanner
     my_parser.symbol = my_scanner.get_symbol()
-    my_parser.check_fixed_start()
+    my_parser._check_fixed_start()
     assert len(my_parser.syntax_errors_list) == 1
     assert my_parser.syntax_errors_list[0] == "start"
 
@@ -86,7 +85,7 @@ def test_check_fixed_others1(basic_parser):
     my_scanner = my_parser.scanner
     my_parser.symbol = my_scanner.get_symbol()
     my_parser.symbol = my_scanner.get_symbol()
-    my_parser.check_fixed_others(my_scanner.DEVICES_ID)
+    my_parser._check_fixed_others(my_scanner.DEVICES_ID)
     assert len(my_parser.syntax_errors_list) == 0
     assert my_parser.symbol.type == my_scanner.SEMICOLON
 
@@ -98,7 +97,7 @@ def test_check_fixed_others2(basic_parser):
     my_parser = basic_parser
     my_scanner = my_parser.scanner
     my_parser.symbol = my_scanner.get_symbol()
-    my_parser.check_fixed_others(my_scanner.DEVICES_ID)
+    my_parser._check_fixed_others(my_scanner.DEVICES_ID)
     assert len(my_parser.syntax_errors_list) == 1
     assert my_parser.syntax_errors_list[0] == "semicolon"
     assert my_parser.symbol.type == my_scanner.SEMICOLON
@@ -109,7 +108,7 @@ def test_check_fixed_others3(basic_parser):
     and also that it skips to semicolon."""
     my_parser = basic_parser
     my_scanner = my_parser.scanner
-    my_parser.check_fixed_others(my_scanner.DEVICES_ID)
+    my_parser._check_fixed_others(my_scanner.DEVICES_ID)
     assert len(my_parser.syntax_errors_list) == 1
     assert my_parser.syntax_errors_list[0] == my_scanner.DEVICES_ID
     assert my_parser.symbol.type == my_scanner.SEMICOLON
@@ -142,7 +141,7 @@ def test_check_validdevice(parameter_parser, param, correct):
     """Tests the check_validdevice function."""
     my_parser = parameter_parser
     my_scanner = my_parser.scanner
-    left_expression = eval("".join(["my_parser.check_validdevice", param]))
+    left_expression = eval("".join(["my_parser._check_validdevice", param]))
     right_expression = eval(correct)
     assert left_expression == right_expression
 
@@ -157,7 +156,7 @@ def test_check_validparam(parameter_parser, param, correct):
     """Tests the check_validparam function."""
     my_parser = parameter_parser
     my_scanner = my_parser.scanner
-    left_expression = eval("".join(["my_parser.check_validparam", param]))
+    left_expression = eval("".join(["my_parser._check_validparam", param]))
     right_expression = eval(correct)
     assert left_expression == right_expression
 
@@ -172,7 +171,8 @@ def test_check_validdtypeinput(parameter_parser, param, correct):
     """Tests the check_validdtypeinput function."""
     my_parser = parameter_parser
     my_scanner = my_parser.scanner
-    left_expression = eval("".join(["my_parser.check_validdtypeinput", param]))
+    left_expression = eval("".join(["my_parser._check_validdtypeinput",
+                                    param]))
     right_expression = eval(correct)
     assert left_expression == right_expression
 
@@ -188,7 +188,7 @@ def test_check_validdtypeoutput(parameter_parser, param, correct):
     my_parser = parameter_parser
     my_scanner = my_parser.scanner
     left_expression = eval(
-        "".join(["my_parser.check_validdtypeoutput", param]))
+        "".join(["my_parser._check_validdtypeoutput", param]))
     right_expression = eval(correct)
     assert left_expression == right_expression
 
@@ -216,7 +216,7 @@ def test_check_deviceline1(deviceline_parser):
     my_parser = deviceline_parser
     my_scanner = my_parser.scanner
     my_parser.symbol = my_scanner.get_symbol()
-    my_parser.check_deviceline()
+    my_parser._check_deviceline()
     assert len(my_parser.syntax_errors_list) == 1
     assert my_parser.syntax_errors_list[0] == "devicename"
 
@@ -229,7 +229,7 @@ def test_check_deviceline2(deviceline_parser):
     # Skips to 2nd line
     for i in range(9):
         my_parser.symbol = my_scanner.get_symbol()
-    my_parser.check_deviceline()
+    my_parser._check_deviceline()
     assert len(my_parser.syntax_errors_list) == 1
     assert my_parser.syntax_errors_list[0] == "equal"
 
@@ -242,7 +242,7 @@ def test_check_deviceline3(deviceline_parser):
     # Skips to 3rd line
     for i in range(18):
         my_parser.symbol = my_scanner.get_symbol()
-    my_parser.check_deviceline()
+    my_parser._check_deviceline()
     assert len(my_parser.syntax_errors_list) == 1
     assert my_parser.syntax_errors_list[0] == "devicetype"
 
@@ -255,7 +255,7 @@ def test_check_deviceline4(deviceline_parser):
     # Skips to 4th line
     for i in range(26):
         my_parser.symbol = my_scanner.get_symbol()
-    my_parser.check_deviceline()
+    my_parser._check_deviceline()
     assert len(my_parser.syntax_errors_list) == 1
     assert my_parser.syntax_errors_list[0] == "semicoloncomma"
 
@@ -268,7 +268,7 @@ def test_check_deviceline5(deviceline_parser):
     # Skips to 5th line
     for i in range(33):
         my_parser.symbol = my_scanner.get_symbol()
-    my_parser.check_deviceline()
+    my_parser._check_deviceline()
     assert len(my_parser.syntax_errors_list) == 0
 
 
@@ -280,7 +280,7 @@ def test_check_deviceline6(deviceline_parser):
     # Skips to 6th line
     for i in range(41):
         my_parser.symbol = my_scanner.get_symbol()
-    my_parser.check_deviceline()
+    my_parser._check_deviceline()
     assert len(my_parser.syntax_errors_list) == 1
     assert my_parser.syntax_errors_list[0] == "parameter"
 
@@ -293,7 +293,7 @@ def test_check_paramindevice1(deviceline_parser):
     # Skips to 7th line
     for i in range(49):
         my_parser.symbol = my_scanner.get_symbol()
-    my_parser.check_deviceline()
+    my_parser._check_deviceline()
     assert len(my_parser.syntax_errors_list) == 1
     assert my_parser.syntax_errors_list[0] == "equal"
 
@@ -306,7 +306,7 @@ def test_check_paramindevice2(deviceline_parser):
     # Skips to 8th line
     for i in range(57):
         my_parser.symbol = my_scanner.get_symbol()
-    my_parser.check_deviceline()
+    my_parser._check_deviceline()
     assert len(my_parser.syntax_errors_list) == 1
     assert my_parser.syntax_errors_list[0] == "number"
 
@@ -336,7 +336,7 @@ def test_check_validconnectionoutput1(connectionline_parser):
     my_parser = connectionline_parser
     my_scanner = my_parser.scanner
     my_parser.symbol = my_scanner.get_symbol()
-    my_parser.check_connectionline()
+    my_parser._check_connectionline()
     assert len(my_parser.syntax_errors_list) == 1
     assert my_parser.syntax_errors_list[0] == "devicename"
 
@@ -349,7 +349,7 @@ def test_check_validconnectionoutput2(connectionline_parser):
     # Skips to 2nd line
     for i in range(7):
         my_parser.symbol = my_scanner.get_symbol()
-    my_parser.check_connectionline()
+    my_parser._check_connectionline()
     assert len(my_parser.syntax_errors_list) == 1
     assert my_parser.syntax_errors_list[0] == "arrowperiod"
 
@@ -362,7 +362,7 @@ def test_check_validconnectionoutput3(connectionline_parser):
     # Skips to 3rd line
     for i in range(15):
         my_parser.symbol = my_scanner.get_symbol()
-    my_parser.check_connectionline()
+    my_parser._check_connectionline()
     assert len(my_parser.syntax_errors_list) == 1
     assert my_parser.syntax_errors_list[0] == "doutput"
 
@@ -375,7 +375,7 @@ def test_check_validconnectioninput1(connectionline_parser):
     # Skips to 4th line
     for i in range(23):
         my_parser.symbol = my_scanner.get_symbol()
-    my_parser.check_connectionline()
+    my_parser._check_connectionline()
     assert len(my_parser.syntax_errors_list) == 1
     assert my_parser.syntax_errors_list[0] == "devicename"
 
@@ -388,7 +388,7 @@ def test_check_validconnectioninput2(connectionline_parser):
     # Skips to 5th line
     for i in range(29):
         my_parser.symbol = my_scanner.get_symbol()
-    my_parser.check_connectionline()
+    my_parser._check_connectionline()
     assert len(my_parser.syntax_errors_list) == 1
     assert my_parser.syntax_errors_list[0] == "period"
 
@@ -401,7 +401,7 @@ def test_check_validconnectioninput3(connectionline_parser):
     # Skips to 6th line
     for i in range(35):
         my_parser.symbol = my_scanner.get_symbol()
-    my_parser.check_connectionline()
+    my_parser._check_connectionline()
     assert len(my_parser.syntax_errors_list) == 1
     assert my_parser.syntax_errors_list[0] == "input"
 
@@ -414,7 +414,7 @@ def test_check_validconnectioninput4(connectionline_parser):
     # Skips to 7th line
     for i in range(41):
         my_parser.symbol = my_scanner.get_symbol()
-    my_parser.check_connectionline()
+    my_parser._check_connectionline()
     assert len(my_parser.syntax_errors_list) == 1
     assert my_parser.syntax_errors_list[0] == "number"
 
@@ -427,7 +427,7 @@ def test_check_connectionline1(connectionline_parser):
     # Skips to 8th line
     for i in range(47):
         my_parser.symbol = my_scanner.get_symbol()
-    my_parser.check_connectionline()
+    my_parser._check_connectionline()
     assert len(my_parser.syntax_errors_list) == 1
     assert my_parser.syntax_errors_list[0] == "arrow"
 
@@ -440,7 +440,7 @@ def test_check_connectionline2(connectionline_parser):
     # Skips to 9th line
     for i in range(56):
         my_parser.symbol = my_scanner.get_symbol()
-    my_parser.check_connectionline()
+    my_parser._check_connectionline()
     assert len(my_parser.syntax_errors_list) == 1
     assert my_parser.syntax_errors_list[0] == "comma"
 
@@ -453,7 +453,7 @@ def test_check_connectionline3(connectionline_parser):
     # Skips to 10th line
     for i in range(69):
         my_parser.symbol = my_scanner.get_symbol()
-    my_parser.check_connectionline()
+    my_parser._check_connectionline()
     assert len(my_parser.syntax_errors_list) == 0
 
 
@@ -465,7 +465,7 @@ def test_check_connectionline4(connectionline_parser):
     # Skips to 11th line
     for i in range(83):
         my_parser.symbol = my_scanner.get_symbol()
-    my_parser.check_connectionline()
+    my_parser._check_connectionline()
     assert len(my_parser.syntax_errors_list) == 0
 
 
@@ -500,7 +500,7 @@ def test_check_monitorline1(monitorline_parser):
     my_parser.duplicate_error_checker = 1
 
     my_parser.symbol = my_scanner.get_symbol()
-    my_parser.check_monitorline()
+    my_parser._check_monitorline()
     assert len(my_parser.syntax_errors_list) == 1
     assert my_parser.syntax_errors_list[0] == "devicename"
 
@@ -519,7 +519,7 @@ def test_check_monitorline2(monitorline_parser):
     # Skips to 2nd line
     for i in range(3):
         my_parser.symbol = my_scanner.get_symbol()
-    my_parser.check_monitorline()
+    my_parser._check_monitorline()
     assert len(my_parser.syntax_errors_list) == 1
     assert my_parser.syntax_errors_list[0] == "semicolon"
 
@@ -538,7 +538,7 @@ def test_check_monitorline3(monitorline_parser):
     # Skips to 3rd line
     for i in range(4):
         my_parser.symbol = my_scanner.get_symbol()
-    my_parser.check_monitorline()
+    my_parser._check_monitorline()
     assert len(my_parser.syntax_errors_list) == 1
     assert my_parser.syntax_errors_list[0] == "doutput"
 
@@ -557,7 +557,7 @@ def test_check_monitorline4(monitorline_parser):
     # Skips to 4th line
     for i in range(8):
         my_parser.symbol = my_scanner.get_symbol()
-    my_parser.check_monitorline()
+    my_parser._check_monitorline()
     assert len(my_parser.syntax_errors_list) == 1
     assert my_parser.syntax_errors_list[0] == "semicolon"
 
@@ -576,7 +576,7 @@ def test_check_monitorline5(monitorline_parser):
     # Skips to 5th line
     for i in range(11):
         my_parser.symbol = my_scanner.get_symbol()
-    my_parser.check_monitorline()
+    my_parser._check_monitorline()
     assert len(my_parser.syntax_errors_list) == 0
 
 
@@ -612,7 +612,7 @@ def test_parse_network_incorrect_syntax():
         my_network,
         my_monitors,
         my_scanner)
-    assert my_parser.parse_network() == False
+    assert not my_parser.parse_network()
     assert len(my_parser.syntax_errors_list) == 2
     assert my_parser.syntax_errors_list[0] == "start"
     assert my_parser.syntax_errors_list[1] == my_scanner.DEVICES_ID
@@ -633,7 +633,7 @@ def test_parse_network_incorrect_semantics1():
         my_monitors,
         my_scanner)
     # Check that parse_network() returns False
-    assert my_parser.parse_network() == False
+    assert not my_parser.parse_network()
     # Check that there are no syntax errors
     assert len(my_parser.syntax_errors_list) == 0
     # Check that 2 semantic errors are raised (one from
@@ -657,7 +657,7 @@ def test_parse_network_incorrect_semantics2():
         my_monitors,
         my_scanner)
     # Check that parse_network() returns False
-    assert my_parser.parse_network() == False
+    assert not my_parser.parse_network()
     # Check that there are no syntax errors
     assert len(my_parser.syntax_errors_list) == 0
     # Check that 2 semantic errors are raised (one from
@@ -681,7 +681,7 @@ def test_parse_network_incorrect_semantics3():
         my_monitors,
         my_scanner)
     # Check that parse_network() returns False
-    assert my_parser.parse_network() == False
+    assert not my_parser.parse_network()
     # Check that there are no syntax errors
     assert len(my_parser.syntax_errors_list) == 0
     # Check that 2 semantic errors are raised (one from
@@ -705,7 +705,7 @@ def test_parse_network_incorrect_semantics4():
         my_monitors,
         my_scanner)
     # Check that parse_network() returns False
-    assert my_parser.parse_network() == False
+    assert not my_parser.parse_network()
     # Check that there are no syntax errors
     assert len(my_parser.syntax_errors_list) == 0
     # Check that 2 semantic errors are logged (one from actual error, one from
@@ -731,7 +731,7 @@ def test_parse_network_incorrect_semantics5():
         my_monitors,
         my_scanner)
     # Check that parse_network() returns False
-    assert my_parser.parse_network() == False
+    assert not my_parser.parse_network()
     # Check that there are no syntax errors
     assert len(my_parser.syntax_errors_list) == 0
     # Check that 2 semantic errors are logged (one from actual error, one from
@@ -755,7 +755,7 @@ def test_parse_network_incorrect_semantics6():
         my_monitors,
         my_scanner)
     # Check that parse_network() returns False
-    assert my_parser.parse_network() == False
+    assert not my_parser.parse_network()
     # Check that there are no syntax errors
     assert len(my_parser.syntax_errors_list) == 0
     # Check that 2 semantic errors are logged (one from actual error, one from
@@ -779,7 +779,7 @@ def test_parse_network_incorrect_semantics7():
         my_monitors,
         my_scanner)
     # Check that parse_network() returns False
-    assert my_parser.parse_network() == False
+    assert not my_parser.parse_network()
     # Check that there are no syntax errors
     assert len(my_parser.syntax_errors_list) == 0
     # Check that 2 semantic errors are logged (one from actual error, one from
@@ -803,7 +803,7 @@ def test_parse_network_incorrect_semantics8():
         my_monitors,
         my_scanner)
     # Check that parse_network() returns False
-    assert my_parser.parse_network() == False
+    assert not my_parser.parse_network()
     # Check that there are no syntax errors
     assert len(my_parser.syntax_errors_list) == 0
     # Check that 1 semantic error is logged (from network.check_network())
@@ -826,7 +826,7 @@ def test_parse_network_incorrect_semantics9():
         my_monitors,
         my_scanner)
     # Check that parse_network() returns False
-    assert my_parser.parse_network() == False
+    assert not my_parser.parse_network()
     # Check that there are no syntax errors
     assert len(my_parser.syntax_errors_list) == 0
     # Check that 1 semantic error is logged (from actual error)
@@ -849,7 +849,7 @@ def test_parse_network_incorrect_semantics10():
         my_monitors,
         my_scanner)
     # Check that parse_network() returns False
-    assert my_parser.parse_network() == False
+    assert not my_parser.parse_network()
     # Check that there are no syntax errors
     assert len(my_parser.syntax_errors_list) == 0
     # Check that 1 semantic error is logged (from actual error)
@@ -872,7 +872,7 @@ def test_parse_network_incorrect_semantics11():
         my_monitors,
         my_scanner)
     # Check that parse_network() returns False
-    assert my_parser.parse_network() == False
+    assert not my_parser.parse_network()
     # Check that there are no syntax errors
     assert len(my_parser.syntax_errors_list) == 0
     # Check that 1 semantic error is logged (from actual error)
@@ -896,4 +896,4 @@ def test_parse_network_incorrect_semantics12():
         my_monitors,
         my_scanner)
     # Check that parse_network() returns False
-    assert my_parser.parse_network() == False
+    assert not my_parser.parse_network()

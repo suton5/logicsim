@@ -1,0 +1,11 @@
+Change colours??
+
+Have a feature to get back to initial canvas.
+
+Change button text to ‘reset’?
+
+Add a status console within GUI
+
+Critical failure when does not parse, show in status console?
+
+Print errors in reverse so that most important error is easily seen.

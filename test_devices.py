@@ -56,16 +56,18 @@ def test_make_device(new_devices):
     """Test if make_device correctly makes devices with their properties."""
     names = new_devices.names
 
-    [NAND1_ID, CLOCK1_ID, D1_ID, I1_ID,
-     I2_ID] = names.lookup(["Nand1", "Clock1", "D1", "I1", "I2"])
+    [NAND1_ID, CLOCK1_ID, D1_ID, I1_ID, I2_ID, SG1_ID] = names.lookup(
+        ["Nand1", "Clock1", "D1", "I1", "I2", "SG1"])
     new_devices.make_device(NAND1_ID, new_devices.NAND, 2)  # 2-input NAND
     # Clock half period is 5
     new_devices.make_device(CLOCK1_ID, new_devices.CLOCK, 5)
     new_devices.make_device(D1_ID, new_devices.D_TYPE)
+    new_devices.make_device(SG1_ID, new_devices.SIGGEN, "01101")
 
     nand_device = new_devices.get_device(NAND1_ID)
     clock_device = new_devices.get_device(CLOCK1_ID)
     dtype_device = new_devices.get_device(D1_ID)
+    siggen_device = new_devices.get_device(SG1_ID)
 
     assert nand_device.inputs == {I1_ID: None, I2_ID: None}
     assert clock_device.inputs == {}
@@ -73,6 +75,7 @@ def test_make_device(new_devices):
                                    new_devices.SET_ID: None,
                                    new_devices.CLEAR_ID: None,
                                    new_devices.CLK_ID: None}
+    assert siggen_device.inputs == {}
 
     assert nand_device.outputs == {None: new_devices.LOW}
 
@@ -83,10 +86,16 @@ def test_make_device(new_devices):
     assert dtype_device.outputs == {new_devices.Q_ID: new_devices.LOW,
                                     new_devices.QBAR_ID: new_devices.LOW}
 
+    # Signal generator should initialise at its first value 0
+    assert siggen_device.outputs == {None: new_devices.LOW}
+
     assert clock_device.clock_half_period == 5
     # Clock counter and D-type memory are initially at random states
     assert clock_device.clock_counter in range(5)
     assert dtype_device.dtype_memory in [new_devices.LOW, new_devices.HIGH]
+
+    assert siggen_device.siggen_waveform == "01101"
+    assert siggen_device.siggen_counter == 0
 
 
 @pytest.mark.parametrize("function_args, error", [
@@ -113,6 +122,27 @@ def test_make_device_gives_errors(new_devices, function_args, error):
     left_expression = eval("".join(["new_devices.make_device", function_args]))
     right_expression = eval(error)
     assert left_expression == right_expression
+
+
+def test_make_device_gives_errors_siggen(new_devices):
+    """Test if make_device returns the appropriate errors when making signal
+    generators."""
+    names = new_devices.names
+    [SG2_ID, SG3_ID, SG4_ID] = names.lookup(["SG2", "SG3", "SG4"])
+
+    # Add the new signal generators
+    assert new_devices.make_device(
+        SG2_ID,
+        new_devices.SIGGEN,
+        None) == new_devices.NO_QUALIFIER
+    assert new_devices.make_device(
+        SG3_ID,
+        new_devices.SIGGEN,
+        "011020") == new_devices.INVALID_SIGGEN
+    assert new_devices.make_device(
+        SG4_ID,
+        new_devices.SIGGEN,
+        "011010") == new_devices.NO_ERROR
 
 
 def test_get_signal_name(devices_with_items):

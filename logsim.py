@@ -23,6 +23,8 @@ from scanner import Scanner
 from parse import Parser
 from userint import UserInterface
 from gui import Gui
+from gui import ErrorFrame
+import app_base as ab
 
 #from devices import Device
 
@@ -67,18 +69,18 @@ def main(arg_list):
                 userint.command_interface()
 
     if not options:  # no option given, use the graphical user interface
+        app = ab.BaseApp(redirect=False)
+        error = ErrorFrame()
         
         if len(arguments) == 0:  # wrong number of arguments
             # Initialise an instance of the gui.Gui() class
             path = None
-            print('len(arguments) = 0 if statement is accessed')
+            #print('len(arguments) = 0 if statement is accessed')
             scanner = Scanner(path, names)
             parser = Parser(names, devices, network, monitors, scanner)
-            app = wx.App()
-            gui = Gui("Logic Simulator", path, names, devices, network,
+            gui = Gui("LogicSim", path, names, devices, network,
                       monitors)
             gui.Show(True)
-            app.MainLoop()
     
         elif len(arguments) != 0 and len(arguments) != 1:
             print("Error: one or no file path required\n")
@@ -87,16 +89,19 @@ def main(arg_list):
 
         else:
             [path] = arguments
-            print('else statement is accessed')
             scanner = Scanner(path, names)
             parser = Parser(names, devices, network, monitors, scanner)
             if parser.parse_network():
                 # Initialise an instance of the gui.Gui() class
-                app = wx.App()
-                gui = Gui("Logic Simulator", path, names, devices, network,
+                #import app_base as ab
+                #app = ab.BaseApp(redirect=False)
+                #app = wx.App()
+                gui = Gui("LogicSim", path, names, devices, network,
                       monitors)
                 gui.Show(True)
-                app.MainLoop()
+        
+        error.ShowModal()
+        app.MainLoop()
         
 if __name__ == "__main__":
     main(sys.argv[1:])

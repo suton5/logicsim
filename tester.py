@@ -7,7 +7,7 @@ import devices
 import sys
 
 my_names=Names()
-my_scanner=scanner.Scanner("dlatch.txt", my_names)
+my_scanner=scanner.Scanner(sys.argv[1], my_names)
 # my_scanner=scanner.Scanner("connectioninputconnected.txt", my_names)
 my_devices=devices.Devices(my_names)
 my_network=Network(my_names, my_devices)

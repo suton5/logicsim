@@ -88,8 +88,8 @@ class Devices:
     make_clock(self, device_id, clock_half_period): Makes a clock device with
                                                     the specified half period.
 
-    make_siggen(self, device_id, waveform): Makes a signal generator device with
-                                                    the specified periodic waveform.
+    make_siggen(self, device_id, waveform): Makes a signal generator device
+                                        with the specified periodic waveform.
 
     make_gate(self, device_id, device_kind, no_of_inputs): Makes logic gates
                                         with the specified number of inputs.
@@ -114,16 +114,23 @@ class Devices:
         dtype_inputs = ["CLK", "SET", "CLEAR", "DATA"]
         dtype_outputs = ["Q", "QBAR"]
 
-        [self.NO_ERROR, self.INVALID_QUALIFIER, self.NO_QUALIFIER,
-         self.BAD_DEVICE, self.QUALIFIER_PRESENT,
-         self.DEVICE_PRESENT] = self.names.unique_error_codes(6)
+        [self.NO_ERROR,
+         self.INVALID_QUALIFIER,
+         self.NO_QUALIFIER,
+         self.BAD_DEVICE,
+         self.QUALIFIER_PRESENT,
+         self.DEVICE_PRESENT,
+         self.INVALID_SIGGEN] = self.names.unique_error_codes(7)
 
         self.signal_types = [self.LOW, self.HIGH, self.RISING,
                              self.FALLING, self.BLANK] = range(5)
         self.gate_types = [self.AND, self.OR, self.NAND, self.NOR,
                            self.XOR] = self.names.lookup(gate_strings)
-        self.device_types = [self.CLOCK, self.SWITCH,
-                             self.D_TYPE, self.SIGGEN] = self.names.lookup(device_strings)
+        self.device_types = [
+            self.CLOCK,
+            self.SWITCH,
+            self.D_TYPE,
+            self.SIGGEN] = self.names.lookup(device_strings)
         self.dtype_input_ids = [self.CLK_ID, self.SET_ID, self.CLEAR_ID,
                                 self.DATA_ID] = self.names.lookup(dtype_inputs)
         self.dtype_output_ids = [
@@ -296,10 +303,8 @@ class Devices:
                     random.randrange(device.clock_half_period)
             elif device.device_kind == self.SIGGEN:
                 device.siggen_counter = 0
-                self.add_output(device.device_id, output_id=None, 
+                self.add_output(device.device_id, output_id=None,
                                 signal=int(device.siggen_waveform[0]))
-
-
 
     def binary_checker(self, value):
         """Ensures that value only contains 0s or 1s."""
@@ -307,7 +312,6 @@ class Devices:
             if char != "0" and char != "1":
                 return False
         return True
-
 
     def make_device(self, device_id, device_kind, device_property=None):
         """Create the specified device.
@@ -343,7 +347,7 @@ class Devices:
             if device_property is None:
                 error_type = self.NO_QUALIFIER
             elif not self.binary_checker(device_property):
-                error_type = self.INVALID_QUALIFIER
+                error_type = self.INVALID_SIGGEN
             else:
                 self.make_siggen(device_id, device_property)
                 error_type = self.NO_ERROR

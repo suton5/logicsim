@@ -1,20 +1,21 @@
 ﻿network = "START DEVICES", ";", devicelist, "END DEVICES", ";", "START CONNECTIONS", ";", connectionlist, "END CONNECTIONS", ";", "START MONITORS", ";", monitorlist, "END MONITORS", ";";
 
-devicelist = device, {device};
-device = name, "=", object, [",", "ip=", number], [",", "init=", number], [",", "cycles=", number], ";";
+devicelist = {device, ";"};
+device = name, "=", object, [param];
+param = ",", ("ip"|"init"|"cycles"|"sig"), "=", number;
 name = word, {number};
 word = letter, {letter};
 letter = "A"|"B"|"C"|"D"|"E"|"F"|"G"|"H"|"I"|"J"|"K"|"L"|"M"|"N"|"O"|"P"|"Q"|"R"|"S"|"T"|"U"|"V"|"W"|"X"|"Y"|"Z";
 number = digit, {digit};
 digit = "0"|"1"|"2"|"3"|"4"|"5"|"6"|"7"|"8"|"9";
-object = "CLOCK"|"SWITCH"|"AND"|"NAND"|"OR"|"NOR"|"DTYPE"|"XOR";
+object = "CLOCK"|"SWITCH"|"AND"|"NAND"|"OR"|"NOR"|"DTYPE"|"XOR"|"SIGGEN";
 
-connectionlist = connection, {connection};
-connection = output, "->", input, {",", input}, ";";
+connectionlist = {connection, ";"};
+connection = output, "->", input, {",", input};
 output = name, [".", outputname];
 outputname = "Q"|"QBAR";
 input = name, ".", inputname;
 inputname = inputsig|"DATA"|"CLK"|"SET"|"CLEAR";
 inputsig = "I", number;
 
-monitorlist = output, {";", output}, ";";
+monitorlist = {output, ";"};
